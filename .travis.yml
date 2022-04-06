@@ -1,0 +1,12 @@
+sudo: required
+language: generic
+services:
+  - docker
+
+before_install:
+  - docker build -t vladmois/prefect-common:latest .
+  - docker build -t vladmois/prefect-common:$(date '+%Y-%m-%d-%H-%M-%S') .
+
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push vladmois/prefect-common --all-tags
