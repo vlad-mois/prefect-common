@@ -1,0 +1,15 @@
+[server]
+host = "http://localhost"
+port = "$APOLLO_API_PORT"
+host_port = "$APOLLO_API_PORT"
+endpoint = "${server.host}:${server.port}"
+
+    [server.ui]
+    host = "http://localhost"
+    port = "$PREFECT_UI_PORT"
+    host_port = "$PREFECT_UI_PORT"
+    endpoint = "${server.ui.host}:${server.ui.port}"
+    apollo_url = "http://localhost:$APOLLO_API_PORT/graphql"
+
+    [server.telemetry]
+    enabled = true
